@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
+// require in mongoose to set up the db connection
 const config = require("config");
+// require in config to access the defaut.json URI file
 const db = config.get("mongoURI");
+// get mongoURI from default.json
 
 const connectDB = async () => {
   try {
