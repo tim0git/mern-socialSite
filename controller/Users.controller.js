@@ -20,7 +20,7 @@ exports.createUser = async (req, res, next) => {
   const { name, email, password } = req.body;
   try {
     await createNewUser(name, email, password);
-    res.send({ message: "User registered", response: req.body });
+    res.status(201).send({ message: "User registered", response: req.body });
   } catch (err) {
     next(err);
   }

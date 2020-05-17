@@ -13,7 +13,7 @@ exports.handle405 = (req, res, next) => {
 exports.handleMongoDB_Error = (err, req, res, next) => {
   console.log(err.code, "<-------------log EH");
   const codes = {
-    "11000": { status: 400, message: "User already exists from EH" },
+    "11000": { status: 400, message: "User already exists" },
   };
   if (err.code in codes) {
     const { status, message } = codes[err.code];
