@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "jest --watch --runInBand --detectOpenHandles",
-    "start": "node server",
+    "start": "",
     "server-test": "NODE_ENV=test nodemon server ",
     "server-dev": "nodemon server"
   },

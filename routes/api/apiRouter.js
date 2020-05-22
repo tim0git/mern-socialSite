@@ -4,7 +4,7 @@ const { send404 } = require("../../error/errorHandling");
 const userRouter = require("./usersRouter");
 const postsRouter = require("./postsRouter");
 const profileRouter = require("./profileRouter");
-const authRouter = require("./authRouter");
+const  authRouter  = require("./authRouter.js");
 // @ router GET api/api
 // @ desc Test route
 // @ access Public

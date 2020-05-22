@@ -11,7 +11,7 @@ exports.handle405 = (req, res, next) => {
 };
 
 exports.handleMongoDB_Error = (err, req, res, next) => {
-  console.log(err.code, "<-------------log EH");
+  console.log(err, "<-------------log EH");
   const codes = {
     "11000": { status: 400, message: "User already exists" },
   };

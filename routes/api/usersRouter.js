@@ -2,7 +2,7 @@ const express = require("express");
 const usersRouter = express.Router();
 const { createUser } = require("../../controller/Users.controller");
 const { check, validationResult } = require("express-validator");
-const {inputValidation} = require("../../controller/Users.controller");
+const { inputValidation } = require("../../controller/Users.controller");
 
 
 // @ router GET api/users

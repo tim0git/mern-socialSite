@@ -40,6 +40,7 @@ describe("/api/users POST", () => {
       password: "123456",
     });
     expect(response.status).toBe(201);
+    console.log(response.body);
     expect(response.body).toEqual({
       message: "User registered",
       response: {
