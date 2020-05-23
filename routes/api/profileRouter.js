@@ -9,6 +9,7 @@ const {
   deleteExperienceById,
   updateEducation,
   deleteEducationById,
+  getGithubProfile
 } = require("../../controller/profile.controller");
 const {
   createProfileCheck,
@@ -74,5 +75,11 @@ profileRouter
   .route("/education/:edu_id")
   .delete(auth, deleteEducationById)
   .all(handle405);
+
+// @ router DELETE api/profile/education
+// @ desc Delete education by exp ID
+// @ access Private
+profileRouter
+  .route("/github/:username").get(getGithubProfile).all(handle405)
 
 module.exports = profileRouter;

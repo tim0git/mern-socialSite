@@ -1,6 +1,7 @@
 const Profile = require("../models/Schemas/ProfileSchema");
-const User = require("../models/Schemas/UserSchema");
 const { check, validationResult } = require("express-validator");
+const request = require("request");
+const config = require("config");
 
 exports.getProfile = async (req, res, next) => {
   try {
@@ -199,6 +200,29 @@ exports.deleteEducationById = async (req, res, next) => {
     profile.education.splice(removeIndex, 1);
     await profile.save();
     res.status(200).send(profile);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getGithubProfile = (req, res, next) => {
+  try {
+    const options = {
+      uri: `https://api.github.com/users/${
+        req.params.username
+      }/repos?per_page=5sort=created:asc&client_id=${config.get(
+        "githubClientId"
+      )}&client_secret=${config.get("githubClientSecret")}`,
+      method: "GET",
+      headers: { "user-agent": "node.js" },
+    }
+    request(options, (error, response, body) => {
+      if (error) next(error);
+      if (response.statusCode !== 200) {
+        return res.status(400).send({ message: "github profile not found" });
+      }
+      res.status(200).send(JSON.parse(body));
+    });
   } catch (error) {
     next(error);
   }

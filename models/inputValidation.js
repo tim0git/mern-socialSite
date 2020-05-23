@@ -31,3 +31,5 @@ exports.updateEducationChecks = [
   check("from", "from date is required").not().isEmpty(),
   check("fieldofstudy", "fieldofstudy date is required").not().isEmpty(),
 ];
+
+exports.postInputCheck = [check("text", "Text is required").not().isEmpty()];
