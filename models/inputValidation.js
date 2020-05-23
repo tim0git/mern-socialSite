@@ -14,4 +14,7 @@ exports.loginInputValidation = [
   check("password", "password is required").exists(),
 ]; // express user creation validation.
 
-exports.createProfileCheck = [check("status", "status is required").not().isEmpty()];
+exports.createProfileCheck = [
+  check("status", "status is required").not().isEmpty(),
+  check("skills", "skills is required").not().isEmpty(),
+];

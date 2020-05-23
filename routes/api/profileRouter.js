@@ -2,8 +2,9 @@ const express = require("express");
 const profileRouter = express.Router();
 const { auth, loginUser } = require("../../controller/authentication");
 const { getProfile } = require("../../controller/profile.controller");
-const {createProfileCheck} = require('../../models/inputValidation')
-const { check, validationResult } = require("express-validator");
+const { createProfileCheck } = require("../../models/inputValidation");
+const {createUserProfile} = require('../../controller/profile.controller')
+
 
 // @ router GET api/profile
 // @ desc Test route
@@ -14,7 +15,7 @@ profileRouter
   .get((req, res, next) => {
     res.send("profile Route");
   })
-  .post([auth, [...createProfileCheck]], (req, res) => {});
+  .post([auth, [...createProfileCheck]], createUserProfile);
 
 profileRouter.route("/me").get(auth, getProfile);
 

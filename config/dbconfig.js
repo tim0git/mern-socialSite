@@ -14,6 +14,7 @@ const connectDB = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
+        useFindAndModify: false,
       });
       console.log("MongoDB connected Test Local");
     } catch (err) {
@@ -29,6 +30,7 @@ const connectDB = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
+        useFindAndModify: false,
       });
       console.log("MongoDB connected Development Cloud");
     } catch (err) {
@@ -38,6 +40,5 @@ const connectDB = {
     }
   }),
 };
-
 
 module.exports = connectDB[ENV];
