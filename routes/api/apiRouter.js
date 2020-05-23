@@ -6,7 +6,6 @@ const postsRouter = require("./postsRouter");
 const profileRouter = require("./profileRouter");
 const  authRouter  = require("./authRouter.js");
 
-
 // @ router All Methods, routes not described below send 404
 // @ desc All methods /api
 // @ access Public
