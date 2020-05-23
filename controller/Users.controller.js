@@ -1,12 +1,10 @@
 const { check, validationResult } = require("express-validator");
 const User = require("../models/Schemas/UserSchema");
+const Profile = require("../models/Schemas/ProfileSchema");
 const gravatar = require("gravatar");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-
-
-
 
 exports.createUser = async (req, res, next) => {
   // error checking for body of request.
@@ -33,11 +31,11 @@ exports.createUser = async (req, res, next) => {
         id: user.id,
       },
     };
-    console.log(config.get('tokenTimeOut'));
+    console.log(config.get("tokenTimeOut"));
     jwt.sign(
       payload,
       config.get("jwtToken"),
-      { expiresIn: config.get('tokenTimeOut') },
+      { expiresIn: config.get("tokenTimeOut") },
       (err, token) => {
         if (err) throw err;
         res.status(201).send({ token });
@@ -54,5 +52,17 @@ exports.getUser = async (req, res, next) => {
     res.status(200).send(user);
   } catch (err) {
     next(err);
+  }
+};
+
+exports.deleteUserById = async (req, res, next) => {
+  const { id } = req.user;
+  try {
+    //@todo remove users posts
+    await Profile.findOneAndRemove({ user: id });
+    await User.findOneAndRemove({ _id: id });
+    res.status(200).send({ message: `user ${id} deleted` });
+  } catch (error) {
+    next(error);
   }
 };

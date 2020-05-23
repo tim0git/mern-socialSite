@@ -18,3 +18,16 @@ exports.createProfileCheck = [
   check("status", "status is required").not().isEmpty(),
   check("skills", "skills is required").not().isEmpty(),
 ];
+
+exports.updateExperienceChecks = [
+  check("title", "title is required").not().isEmpty(),
+  check("company", "company is required").not().isEmpty(),
+  check("from", "from date is required").not().isEmpty(),
+];
+
+exports.updateEducationChecks = [
+  check("school", "school is required").not().isEmpty(),
+  check("qualification", "qualification is required").not().isEmpty(),
+  check("from", "from date is required").not().isEmpty(),
+  check("fieldofstudy", "fieldofstudy date is required").not().isEmpty(),
+];
