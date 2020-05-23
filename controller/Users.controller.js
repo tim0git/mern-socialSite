@@ -6,14 +6,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 
-exports.inputValidation = [
-  check("name", "Name is required").not().isEmpty(),
-  check("email", "Please provide a valid email address").isEmail(),
-  check(
-    "password",
-    "please enter a password with 6 or more characters"
-  ).isLength({ min: 6 }),
-]; // express user creation validation.
+
 
 exports.createUser = async (req, res, next) => {
   // error checking for body of request.
@@ -40,12 +33,11 @@ exports.createUser = async (req, res, next) => {
         id: user.id,
       },
     };
-    console.log("called");
-
+    console.log(config.get('tokenTimeOut'));
     jwt.sign(
       payload,
       config.get("jwtToken"),
-      { expiresIn: 3600 },
+      { expiresIn: config.get('tokenTimeOut') },
       (err, token) => {
         if (err) throw err;
         res.status(201).send({ token });
