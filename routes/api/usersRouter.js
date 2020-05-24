@@ -5,7 +5,6 @@ const { check, validationResult } = require("express-validator");
 const { inputValidation } = require("../../models/inputValidation");
 const { handle405 } = require("../../error/errorHandling.js");
 
-
 // @ router POST api/users
 // @ desc Create new user from user registation page
 // @ access Public

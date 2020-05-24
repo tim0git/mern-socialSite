@@ -11,7 +11,7 @@ exports.handle405 = (req, res, next) => {
 };
 
 exports.handleMongoDB_Error = (err, req, res, next) => {
-  console.log(err.name, err, "<-------------log EH");
+  console.log(err.name, err, "<-------------log EH"); /// dev and test only remove before deployment
   const codes = {
     "11000": { status: 400, message: "User already exists" },
     CastError: {
@@ -33,7 +33,7 @@ exports.handleMongoDB_Error = (err, req, res, next) => {
 
 exports.handleCustomError = (err, req, res, next) => {
   if (err.status) {
-    res.status(err.status).send({ msg: err.msg });
+    res.status(err.status).send({ message: err.msg });
   } else {
     next(err);
   }
