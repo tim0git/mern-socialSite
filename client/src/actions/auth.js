@@ -7,6 +7,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_PROFILE,
 } from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
@@ -77,10 +78,8 @@ export const login = (email, password) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (err) {
-    console.dir(err.response.data.error);
-
+   
     const errors = err.response.data.error;
-
     if (errors) {
       dispatch(setAlert(errors, "danger"));
     }
@@ -92,7 +91,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 // Logout User
-
 export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };

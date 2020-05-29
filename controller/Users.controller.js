@@ -5,6 +5,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const Posts = require('../models/Schemas/Post.Schema')
 
 exports.createUser = async (req, res, next) => {
   // error checking for body of request.
@@ -58,7 +59,7 @@ exports.getUser = async (req, res, next) => {
 exports.deleteUserById = async (req, res, next) => {
   const { id } = req.user;
   try {
-    //@todo remove users posts
+    await Posts.deleteMany({ user: id })
     await Profile.findOneAndRemove({ user: id });
     await User.findOneAndRemove({ _id: id });
     res.status(200).send({ message: `user ${id} deleted` });

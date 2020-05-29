@@ -27,7 +27,6 @@ const { handle405 } = require("../../error/errorHandling.js");
 profileRouter
   .route("/user/:user_id")
   .get(getProfileByUserId)
-  .delete(auth, deleteUserById)
   .all(handle405);
  
 // @ router GET api/profile
@@ -36,6 +35,7 @@ profileRouter
 profileRouter
   .route("/")
   .get(getAllProfiles)
+  .delete(auth, deleteUserById)
   .post([auth, [...createProfileCheck]], createUserProfile)
   .all(handle405);
 

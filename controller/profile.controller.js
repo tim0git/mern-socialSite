@@ -8,11 +8,12 @@ exports.getProfile = async (req, res, next) => {
     const profile = await Profile.findOne({
       user: req.user.id,
     }).populate("user", ["name", "avatar"]);
-
     if (!profile) {
       return res
         .status(400)
         .send({ message: "there is no profile for this user" });
+    } else {
+      res.status(200).send(profile);
     }
   } catch (err) {
     next(err);
@@ -49,7 +50,10 @@ exports.createUserProfile = async (req, res, next) => {
   if (status) profileFields.status = status;
   if (githubusername) profileFields.githubusername = githubusername;
   if (skills) {
-    profileFields.skills = skills.split(",").map((skill) => skill.trim());
+    profileFields.skills = skills
+      .toString()
+      .split(",")
+      .map((skill) => skill.trim());
   }
 
   profileFields.social = {};
@@ -215,7 +219,7 @@ exports.getGithubProfile = (req, res, next) => {
       )}&client_secret=${config.get("githubClientSecret")}`,
       method: "GET",
       headers: { "user-agent": "node.js" },
-    }
+    };
     request(options, (error, response, body) => {
       if (error) next(error);
       if (response.statusCode !== 200) {

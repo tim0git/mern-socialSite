@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors"); //  'This is CORS-enabled for all origins!'
 const connectDB = require("./config/dbconfig");
 const apiRouter = require("./routes/api/apiRouter");
 const {
@@ -13,6 +14,8 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false }));
+
+app.use(cors()); //  'This is CORS-enabled for all origins!'
 
 app.get("/", (req, res) => {
   res.send("API Running");
