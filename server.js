@@ -7,7 +7,6 @@ const {
   handleCustomError,
   handleInternalError,
 } = require("./error/errorHandling");
-
 const path = require("path");
 
 const app = express();
@@ -17,8 +16,6 @@ connectDB();
 
 app.use(express.json({ extended: false }));
 
-app.use(cors()); //  'This is CORS-enabled for all origins!'
-
 // working
 app.use("/api", apiRouter);
 
@@ -27,7 +24,8 @@ app.use(handleMongoDB_Error);
 app.use(handleCustomError);
 app.use(handleInternalError);
 
-if (process.env.NODE_ENV === "production") {
+
+if(process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
