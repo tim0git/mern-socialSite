@@ -1,7 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://tim0git:12211221aA@mern-socialsite-5p99i.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtToken": "unknownSecret",
-  "tokenTimeOut": 3600,
-  "githubClientId": "fd6a01247eb54279c6fd",
-  "githubClientSecret": "f98113b18ef7edfbf27701a1df34d5708dfd2485"
-}
