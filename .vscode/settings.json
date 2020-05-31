@@ -4,7 +4,10 @@
         "connnect",
         "fieldofstudy",
         "githubusername",
+        "heroku",
+        "heroku postbuild",
         "linkedin",
+        "postbuild",
         "repos",
         "uuidv",
         "youtube"
