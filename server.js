@@ -14,6 +14,7 @@ const app = express();
 // connect to mongoDB
 connectDB();
 
+app.use(cors());
 app.use(express.json({ extended: false }));
 
 // working
@@ -24,8 +25,7 @@ app.use(handleMongoDB_Error);
 app.use(handleCustomError);
 app.use(handleInternalError);
 
-
-if(process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
