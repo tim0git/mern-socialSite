@@ -15,8 +15,8 @@ const Dashboard = ({
   profile: { profile, loading },
 }) => {
   useEffect(() => {
-    getCurrentProfile(); // eslint-disable-next-line
-  }, []);
+    getCurrentProfile(); 
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
