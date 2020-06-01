@@ -52,8 +52,6 @@ const connectDB = async () => {
     });
     console.log("MongoDB connected Development Cloud");
   } catch (err) {
-    console.log(err.message);
-    // if error exit process with failure
     process.exit(1);
   }
 }
